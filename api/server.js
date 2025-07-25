@@ -6,10 +6,10 @@ import serverless from "serverless-http";
 
 dotenv.config();
 
-await connectToDB(); // Connect only once and cache for reuse
+await connectToDB(); // Connect to MongoDB
 
 const expressHandler = serverless(app);
 
 export const handler = async (event, context) => {
-  return await handler(event, context);
+  return await expressHandler(event, context);
 };
