@@ -9,4 +9,9 @@ app.use(express.json());
 
 app.use("/api/pizzas", pizzaRoutes);
 
+// Root route (optional)
+app.get("/", (req, res) => {
+  res.send("Welcome to the Pizza API!");
+});
+
 export default app;
