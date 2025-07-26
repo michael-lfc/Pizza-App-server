@@ -12,4 +12,9 @@ app.use(express.json());
 
 app.use("/api/pizzas", pizzaRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Pizza API is live 🍕");
+});
+
+
 export default app;
