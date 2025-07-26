@@ -1,10 +1,13 @@
-// Create a new pizza controller
 import Pizza from "../models/Pizza.js";
 
+// Create a new pizza
 export const createPizza = async (req, res) => {
   try {
     const newPizza = await Pizza.create(req.body);
-    res.status(201).json({ message: "Pizza created successfully", pizza: newPizza });
+    res.status(201).json({
+      message: "Pizza created successfully",
+      pizza: newPizza,
+    });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -36,10 +39,15 @@ export const updatePizza = async (req, res) => {
   try {
     const updatedPizza = await Pizza.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
-      runValidators: true
+      runValidators: true,
     });
+
     if (!updatedPizza) return res.status(404).json({ error: "Pizza not found" });
-    res.json({ message: "Pizza updated successfully", pizza: updatedPizza });
+
+    res.json({
+      message: "Pizza updated successfully",
+      pizza: updatedPizza,
+    });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -50,6 +58,7 @@ export const deletePizza = async (req, res) => {
   try {
     const deletedPizza = await Pizza.findByIdAndDelete(req.params.id);
     if (!deletedPizza) return res.status(404).json({ error: "Pizza not found" });
+
     res.json({ message: "Pizza deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
