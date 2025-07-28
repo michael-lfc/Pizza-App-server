@@ -16,7 +16,7 @@ app.use(cors())
 
 // example route
 app.get("/", (req, res) => {
-  res.json({ message: "Pizzas data!" });
+  res.json({ message: "Welcome to the Pizza API" });
 });
 
 export default app;
