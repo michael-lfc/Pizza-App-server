@@ -7,10 +7,10 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 const DB_URI = process.env.DB_URI 
 
-app.listen(PORT, () => {
-  console.log(`[server]: Running on port ${PORT}`);
-  connectToDB();
-});
+// app.listen(PORT, () => {
+//   console.log(`[server]: Running on port ${PORT}`);
+//   connectToDB();
+// });
 
 export default async function handler(req, res) {
   try {

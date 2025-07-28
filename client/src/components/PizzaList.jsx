@@ -7,6 +7,7 @@ function PizzaList() {
   useEffect(() => {
     async function fetchData() {
       const data = await getPizzas();
+      console.log("Fetched pizzas:", data);
       setPizzas(data);
     }
     fetchData();
