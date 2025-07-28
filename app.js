@@ -1,20 +1,20 @@
 import express from "express";
 import cors from "cors";
+import pizzaRoutes from "./routes/pizzas.js";
 
 const app = express();
 
-// const FRONTEND_ORIGIN = "http://localhost:5173"; // Replace with your frontend URL in production
+// const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "*";
 
 // app.use(cors({
 //   origin: FRONTEND_ORIGIN,
 //   credentials: true,
 // }));
-// app.use(cors())
-
-app.use(express.json());
 app.use(cors())
+app.use(express.json());
 
-// example route
+app.use("/api/pizzas", pizzaRoutes);
+
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Pizza API" });
 });
