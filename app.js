@@ -1,32 +1,20 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-// import { pizzaToppings, pizzaPrices } from "./utils/pizza.js";
-import pizzaRoutes from "./routes/pizzas.js";
-
-dotenv.config();
 
 const app = express();
-// app.use(cors());
 
-// app.use(cors({
-//   origin: "http://localhost:5173", // only allow your frontend dev server
-// }));
+const FRONTEND_ORIGIN = "http://localhost:5173"; // Replace with your frontend URL in production
 
 app.use(cors({
-  origin: "http://localhost:5173",  // your frontend dev server
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type"],
+  origin: FRONTEND_ORIGIN,
+  credentials: true,
 }));
-
 
 app.use(express.json());
 
-app.use("/api/pizzas", pizzaRoutes);
-
-app.get("/", (req, res) => {
-  res.send("Pizza API is live 🍕");
+// example route
+app.get("/api/pizzas", (req, res) => {
+  res.json({ message: "Pizzas data!" });
 });
-
 
 export default app;
