@@ -23,11 +23,11 @@ const DB_URI = process.env.DB_URI
 //   app(req, res);
 // }
 
-import dotenv from "dotenv";
-import app from "./app.js";
-import { connectToDB } from "./db.js";
+// import dotenv from "dotenv";
+// import app from "./app.js";
+// import { connectToDB } from "./db.js";
 
-dotenv.config();
+// dotenv.config();
 
 // Ensure DB is connected only once per cold start
 let isConnected = false;
