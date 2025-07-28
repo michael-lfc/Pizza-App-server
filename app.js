@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors())
 
 // example route
-app.get("/api/pizzas", (req, res) => {
+app.get("/", (req, res) => {
   res.json({ message: "Pizzas data!" });
 });
 
