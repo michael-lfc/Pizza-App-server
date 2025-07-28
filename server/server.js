@@ -12,13 +12,36 @@ const DB_URI = process.env.DB_URI
 //   connectToDB();
 // });
 
+// export default async function handler(req, res) {
+//   try {
+//     await connectToDB();
+//   } catch (error) {
+//     console.error("Database connection failed:", error);
+//     return res.status(500).json({ error: "Internal server error" });
+//   }
+
+//   app(req, res);
+// }
+
+import dotenv from "dotenv";
+import app from "./app.js";
+import { connectToDB } from "./db.js";
+
+dotenv.config();
+
+// Ensure DB is connected only once per cold start
+let isConnected = false;
+
 export default async function handler(req, res) {
-  try {
-    await connectToDB();
-  } catch (error) {
-    console.error("Database connection failed:", error);
-    return res.status(500).json({ error: "Internal server error" });
+  if (!isConnected) {
+    try {
+      await connectToDB();
+      isConnected = true;
+    } catch (error) {
+      console.error("Database connection failed:", error);
+      return res.status(500).json({ error: "Internal server error" });
+    }
   }
 
-  app(req, res);
+  return app(req, res); // forward request to Express app
 }
